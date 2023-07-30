@@ -3,13 +3,13 @@ from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-import numpy as np
 
 
 churn = pd.read_csv('churn_final_data.csv',index_col=0)
+bools = ['Techie', 'Churn', 'Port_modem', 'Tablet', 'Phone', 'Multiple', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'PaperlessBilling']
 numerics = ['Lat','Lng','Population','Children','Age','Income','Outage_sec_perweek','Email','Contacts','Yearly_equip_failure','Tenure','MonthlyCharge','Bandwidth_GB_Year']
-pcs = ['PC1','PC2','PC3','PC4','PC5','PC6','PC7','PC8','PC9','PC10','PC11','PC12','PC13']
-churn = churn[numerics]
+pcs = ['PC1','PC2','PC3','PC4','PC5','PC6','PC7','PC8','PC9','PC10','PC11','PC12','PC13','PC14','PC15','PC16','PC17','PC18','PC19','PC20','PC21','PC22','PC23','PC24','PC25','PC26']
+churn = churn[numerics+bools]
 
 churn_normalized=(churn-churn.mean())/churn.std()
 
@@ -42,3 +42,4 @@ loadings = pd.DataFrame(pca.components_.T,
      index=churn.columns)
 
 print(loadings)
+loadings.to_csv('pca_loadings.csv')
